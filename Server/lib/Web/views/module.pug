@@ -27,7 +27,8 @@
 			{ key: 'DB_MASTERY', href: "/db/mastery" }
 		]},*/
 		{ key: 'MAHANKKUTU', sub: [
-			{ key: 'DISCORD', href: "http://discord.mahankkutu.kro.kr/" }
+			{ key: 'DISCORD', href: "https://discord.gg/dMJqrjHWHr" },
+			{ key: 'GWALLI', href: "/gwalli" }
 		]},
 	];
 	const PUBLIC = locals.published;
@@ -74,7 +75,8 @@ mixin MMenu()
 			+FA('bars')
 			+separator(10)
 			div.menu-sub-btn(onclick='location.href = "/";', style='margin: 7px 0px; height: 25px;')!= L('HOME')
-			div.menu-sub-btn(onclick='location.href = "http://discord.mahankkutu.kro.kr/";', style='margin: 7px 0px; height: 25px;')!= L('DISCORD')
+			div.menu-sub-btn(onclick='location.href = "https://discord.gg/dMJqrjHWHr";', style='margin: 7px 0px; height: 25px;')!= L('DISCORD')
+			div.menu-sub-btn(onclick='location.href = "/gwalli";', style='margin: 7px 0px; height: 25px;')!= L('GWALLI')
 		div#account
 			span#profile= SESSION.profile ? JSON.stringify(SESSION.profile) : '{}'
 			div#account-info

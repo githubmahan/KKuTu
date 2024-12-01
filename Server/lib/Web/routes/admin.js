@@ -21,6 +21,7 @@ var MainDB	 = require("../db");
 var GLOBAL	 = require("../../sub/global.json");
 var JLog	 = require("../../sub/jjlog");
 var Lizard	 = require("../../sub/lizard.js");
+var path	 = require('path');
 
 exports.run = function(Server, page){
 
@@ -266,11 +267,11 @@ function checkAdmin(req, res){
 		if(req.session.profile){
 			if(GLOBAL.ADMIN.indexOf(req.session.profile.id) == -1){
 				req.session.admin = false;
-				return res.send({ error: 400 }), false;
+				return res.render((path.resolve(__dirname, "..", 'views', 'error.pug'))), false;
 			}
 		}else{
 			req.session.admin = false;
-			return res.send({ error: 400 }), false;
+			return res.render((path.resolve(__dirname, "..", 'views', 'error.pug'))), false;
 		}
 	}
 	return true;
