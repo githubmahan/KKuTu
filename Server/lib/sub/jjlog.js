@@ -28,11 +28,11 @@ if (GLOBAL.CHATLOG_OPTIONS.CHATLOG_USE) {
 
     async function getNickname(id) {
         var pgClient = new pg.Client({
-            user: GLOBAL.PG_USER,
-            host: GLOBAL.PG_HOST,
-            database: GLOBAL.PG_DATABASE,
-            password: GLOBAL.PG_PASSWORD,
-            port: GLOBAL.PG_PORT,
+            user: GLOBAL.PG_OPTIONS.USER,
+            host: GLOBAL.PG_OPTIONS.HOST,
+            database: GLOBAL.PG_OPTIONS.DATABASE,
+            password: GLOBAL.PG_OPTIONS.PASSWORD,
+            port: GLOBAL.PG_OPTIONS.PORT,
         });
         
         await pgClient.connect();
