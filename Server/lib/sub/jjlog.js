@@ -20,37 +20,34 @@
 
 var colors = require('colors');
 var GLOBAL = require('./global.json')
+var Discord = require('discord.js')
+var pg = require('pg');
+var discordClient = new Discord.Client();
 
-if (GLOBAL.CHATLOG_OPTIONS.CHATLOG_USE) {
-    var Discord = require('discord.js')
-    var pg = require('pg');
-    var discordClient = new Discord.Client();
-
-    async function getNickname(id) {
-        var pgClient = new pg.Client({
-            user: GLOBAL.PG_OPTIONS.USER,
-            host: GLOBAL.PG_OPTIONS.HOST,
-            database: GLOBAL.PG_OPTIONS.DATABASE,
-            password: GLOBAL.PG_OPTIONS.PASSWORD,
-            port: GLOBAL.PG_OPTIONS.PORT,
-        });
+async function getNickname(id) {
+    var pgClient = new pg.Client({
+        user: GLOBAL.PG_OPTIONS.USER,
+        host: GLOBAL.PG_OPTIONS.HOST,
+        database: GLOBAL.PG_OPTIONS.DATABASE,
+        password: GLOBAL.PG_OPTIONS.PASSWORD,
+        port: GLOBAL.PG_OPTIONS.PORT,
+    });
         
-        await pgClient.connect();
+    await pgClient.connect();
 
-        const res = await pgClient.query(
-            'SELECT nickname FROM users WHERE _id = $1',
-            [id]
-        );
+    const res = await pgClient.query(
+        'SELECT nickname FROM users WHERE _id = $1',
+        [id]
+    );
 
-        if (res.rows.length > 0 && res.rows[0].nickname) {
-            var nickname = res.rows[0].nickname + ` (${id})`
-        } else {
-            var nickname = id
-        }
-
-        await pgClient.end();
-        return nickname;
+    if (res.rows.length > 0 && res.rows[0].nickname) {
+        var nickname = res.rows[0].nickname + ` (${id})`
+    } else {
+        var nickname = id
     }
+
+    await pgClient.end();
+    return nickname;
 }
 
 function callLog(text){
