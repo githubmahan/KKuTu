@@ -22,6 +22,7 @@ doctype html
 html
 	head
 		block Subject
+		link(rel='manifest', href='mahankkutu.webmanifest')
 		meta(charset='utf-8')
 		meta(name='viewport', content='width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no')
 		script(type='text/javascript').
@@ -65,15 +66,13 @@ html
 		div#Bottom
 			block Bottom
 			div.bottom-legal
-				a(href='?pc=true')= L('AS_PC')
+				a(href='?')= L('AS_PC')
 				br
-				a.bottom-contact(href='http://site.mahankkutu.kro.kr', target='_blank')= L('CREATOR')
+				a.bottom-contact(href='https://daldal.so/w/%EB%A7%88%ED%95%9C%EB%81%84%ED%88%AC/%EB%A7%88%ED%95%9C%EB%81%84%ED%88%AC', target='_blank')= L('CREATOR')
 				a.bottom-contact(href='mailto:admin@mahan.kro.kr', target='_blank')= L('EMAIL')
-				a.bottom-contact(href='http://ga.mahankkutu.kro.kr/', target='_blank')= L('INFO')
-				a.bottom-contact(href='http://sua.mahankkutu.kro.kr/', target='_blank')= L('SERVICE')
-				a.bottom-contact(href='http://wiki.mahankkutu.kro.kr/', target='_blank')= L('WIKI')
-				a.bottom-contact(href='http://apk.mahankkutu.kro.kr/', target='_blank')= L('APK')
-				a.bottom-contact(href='http://url.mahankkutu.kro.kr/', target='_blank')= L('URL')
-				a.bottom-contact(href='http://discord.mahankkutu.kro.kr/', target='_blank')= L('DISCORD')
+				a.bottom-contact(href='https://mahankkutu.kro.kr/public%20info%20personal.html', target='_blank')= L('INFO')
+				a.bottom-contact(href='https://mahankkutu.kro.kr/public%20info%20use.html', target='_blank')= L('SERVICE')
+				a.bottom-contact(href='https://mahanwiki.rf.gd/index.php/%EB%8C%80%EB%AC%B8', target='_blank')= L('WIKI')
+				a.bottom-contact(href='https://discord.gg/dMJqrjHWHr', target='_blank')= L('DISCORD')
 			div.bottom-legal!= L('AGPL')
 			+separator(40)
