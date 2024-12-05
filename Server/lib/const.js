@@ -226,10 +226,10 @@ exports.KO_INJEONG = [
 	"PCA", "IMS", "VOC", "GAM", "KRR", "GAB", "KTV",
 	"NSK", "KOT", "KPI", "KPT", "DOT", "DRR", "DGM", "RAG", "LVL",
 	"LOL", "MRN", "MMM", "MIN", "MBE", "MPA", "MHK", "MAP", "MKK", "MNG",
-	"MOB", "ACH", "BAG", "HYK", "CYP", "SAG", "HRH", "STA",
-	"KGR", "ESB", "MOV", "ELW", "OIM", "OVW", "NEX", /*"WOW",*/
+	"ACH", "BAG", "HYK", "CYP", "SAG", "HRH", "STA",
+	"KGR", "ESB", "MOV", "ELW", "OIM", "OVW", "WOW",
 	"UNA", "YRY", "KPO", "JLN", "JAN", "ZEL", "CES", "TSL", "POK", "HAI",
-	"HSS", "KMV", "HDC", "HOS", "SCP"
+	"HSS", "HDC", "HOS", "SCP"
 ];
 exports.EN_INJEONG = [
 	"LOL", "MIN"
