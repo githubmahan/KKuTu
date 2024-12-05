@@ -42,7 +42,7 @@ Server.get("/gwalli/gamsi", function(req, res){
 	if(!checkAdmin(req, res)) return;
 	
 	MainDB.users.findOne([ '_id', req.query.id ]).limit([ 'server', true ]).on(function($u){
-		if(!$u) return res.status(404).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 404, error_message: '찾을 수 없음' }), false;
+		if(!$u) return res.redirect("/error/404?errormessage=찾을 수 없음");
 		var data = { _id: $u._id, server: $u.server };
 		
 		MainDB.session.findOne([ 'profile.id', $u._id ]).limit([ 'profile', true ]).on(function($s){
@@ -59,13 +59,13 @@ Server.get("/gwalli/users", function(req, res){
 			if($u) return onSession($u);
 			MainDB.session.find([ 'profile.name', req.query.name ]).on(function($u){
 				if($u) return onSession($u);
-				res.status(404).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 404, error_message: '찾을 수 없음' }), false;
+				res.redirect("/error/404?errormessage=찾을 수 없음");
 			});
 		});
 	}else{
 		MainDB.users.findOne([ '_id', req.query.id ]).on(function($u){
 			if($u) return res.send({ list: [ $u ] });
-			res.status(404).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 404, error_message: '찾을 수 없음' }), false;
+			res.redirect("/error/404?errormessage=찾을 수 없음");
 		});
 	}
 	function onSession(list){
@@ -95,8 +95,8 @@ Server.get("/gwalli/kkutudb/:word", function(req, res){
 	
 	var TABLE = MainDB.kkutu[req.query.lang];
 	
-	if(!TABLE) return res.status(400).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 400, error_message: '요청이 잘못됨' }), false;
-	if(!TABLE.findOne) return res.status(400).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 400, error_message: '요청이 잘못됨' }), false;
+	if(!TABLE) return res.redirect("/error/400?errormessage=요청이 잘못됨");
+	if(!TABLE.findOne) return res.redirect("/error/400?errormessage=요청이 잘못됨");
 	TABLE.findOne([ '_id', req.params.word ]).on(function($doc){
 		res.send($doc);
 	});
@@ -106,8 +106,8 @@ Server.get("/gwalli/kkututheme", function(req, res){
 	
 	var TABLE = MainDB.kkutu[req.query.lang];
 	
-	if(!TABLE) return res.status(400).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 400, error_message: '요청이 잘못됨' }), false;
-	if(!TABLE.find) return res.status(400).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 400, error_message: '요청이 잘못됨' }), false;
+	if(!TABLE) return res.redirect("/error/400?errormessage=요청이 잘못됨");
+	if(!TABLE.find) return res.redirect("/error/400?errormessage=요청이 잘못됨");
 	TABLE.find([ 'theme', new RegExp(req.query.theme) ]).limit([ '_id', true ]).on(function($docs){
 		res.send({ list: $docs.map(v => v._id) });
 	});
@@ -136,7 +136,7 @@ Server.get("/gwalli/shop/:key", function(req, res){
 });
 Server.post("/gwalli/injeong", function(req, res){
 	if(!checkAdmin(req, res)) return;
-	if(req.body.pw != GLOBAL.PASS) return res.status(400).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 400, error_message: '요청이 잘못됨' }), false;
+	if(req.body.pw != GLOBAL.PASS) return res.redirect("/error/400?errormessage=요청이 잘못됨");
 	
 	var list = JSON.parse(req.body.list).list;
 	var themes;
@@ -162,16 +162,16 @@ Server.post("/gwalli/injeong", function(req, res){
 Server.post("/gwalli/kkutudb", onKKuTuDB);
 function onKKuTuDB(req, res){
 	if(!checkAdmin(req, res)) return;
-	if(req.body.pw != GLOBAL.PASS) return res.status(400).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 400, error_message: '요청이 잘못됨' }), false;
+	if(req.body.pw != GLOBAL.PASS) return res.redirect("/error/400?errormessage=요청이 잘못됨");
 	
 	var theme = req.body.theme;
 	var list = req.body.list;
 	var TABLE = MainDB.kkutu[req.body.lang];
 	
 	if(list) list = list.split(/[,\r\n]+/);
-	else return res.status(400).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 400, error_message: '요청이 잘못됨' }), false;
-	if(!TABLE) return res.status(400).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 400, error_message: '요청이 잘못됨' }), false;
-	if(!TABLE.insert) return res.status(400).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 400, error_message: '요청이 잘못됨' }), false;
+	else return res.redirect("/error/400?errormessage=요청이 잘못됨");
+	if(!TABLE) return res.redirect("/error/400?errormessage=요청이 잘못됨");
+	if(!TABLE.insert) return res.redirect("/error/400?errormessage=요청이 잘못됨");
 	
 	noticeAdmin(req, theme, list.length);
 	list.forEach(function(item){
@@ -197,12 +197,12 @@ function onKKuTuDB(req, res){
 }
 Server.post("/gwalli/kkutudb/:word", function(req, res){
 	if(!checkAdmin(req, res)) return;
-	if(req.body.pw != GLOBAL.PASS) return res.status(400).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 400, error_message: '요청이 잘못됨' }), false;
+	if(req.body.pw != GLOBAL.PASS) return res.redirect("/error/400?errormessage=요청이 잘못됨");
 	var TABLE = MainDB.kkutu[req.body.lang];
 	var data = JSON.parse(req.body.data);
 	
-	if(!TABLE) return res.status(400).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 400, error_message: '요청이 잘못됨' }), false;
-	if(!TABLE.upsert) return res.status(400).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 400, error_message: '요청이 잘못됨' }), false;
+	if(!TABLE) return res.redirect("/error/400?errormessage=요청이 잘못됨");
+	if(!TABLE.upsert) return res.redirect("/error/400?errormessage=요청이 잘못됨");
 	
 	noticeAdmin(req, data._id);
 	if(data.mean == ""){
@@ -217,7 +217,7 @@ Server.post("/gwalli/kkutudb/:word", function(req, res){
 });
 Server.post("/gwalli/kkutuhot", function(req, res){
 	if(!checkAdmin(req, res)) return;
-	if(req.body.pw != GLOBAL.PASS) return res.status(400).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 400, error_message: '요청이 잘못됨' }), false;
+	if(req.body.pw != GLOBAL.PASS) return res.redirect("/error/400?errormessage=요청이 잘못됨");
 	
 	noticeAdmin(req);
 	parseKKuTuHot().then(function($kh){
@@ -235,7 +235,7 @@ Server.post("/gwalli/kkutuhot", function(req, res){
 });
 Server.post("/gwalli/users", function(req, res){
 	if(!checkAdmin(req, res)) return;
-	if(req.body.pw != GLOBAL.PASS) return res.status(400).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 400, error_message: '요청이 잘못됨' }), false;
+	if(req.body.pw != GLOBAL.PASS) return res.redirect("/error/400?errormessage=요청이 잘못됨");
 	
 	var list = JSON.parse(req.body.list).list;
 	
@@ -246,7 +246,7 @@ Server.post("/gwalli/users", function(req, res){
 });
 Server.post("/gwalli/shop", function(req, res){
 	if(!checkAdmin(req, res)) return;
-	if(req.body.pw != GLOBAL.PASS) return res.status(400).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 400, error_message: '요청이 잘못됨' }), false;
+	if(req.body.pw != GLOBAL.PASS) return res.redirect("/error/400?errormessage=요청이 잘못됨");
 	
 	var list = JSON.parse(req.body.list).list;
 	
@@ -267,11 +267,11 @@ function checkAdmin(req, res){
 		if(req.session.profile){
 			if(GLOBAL.ADMIN.indexOf(req.session.profile.id) == -1){
 				req.session.admin = false;
-				return res.status(403).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 403, error_message: '권한 없음' }), false;
+				return res.redirect("/error/403?errormessage=권한 없음"), false;
 			}
 		}else{
 			req.session.admin = false;
-			return res.status(403).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: 403, error_message: '권한 없음' }), false;
+			return res.redirect("/error/403?errormessage=권한 없음"), false;
 		}
 	}
 	return true;

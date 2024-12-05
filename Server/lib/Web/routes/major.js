@@ -21,6 +21,7 @@ var MainDB	 = require("../db");
 var JLog	 = require("../../sub/jjlog");
 var GLOBAL	 = require("../../sub/global.json");
 var Const	 = require("../../const");
+var path	 = require('path');
 
 function obtain($user, key, value, term, addValue){
 	var now = (new Date()).getTime();
@@ -318,10 +319,10 @@ Server.get("/dict/:word", function(req, res){
     var lang = req.query.lang;
     var DB = MainDB.kkutu[lang];
     
-    if(!DB) return res.send({ error: 400 });
-    if(!DB.findOne) return res.send({ error: 400 });
+    if(!DB) return res.send({ error: 400 })
+    if(!DB.findOne) return res.send({ error: 400 })
     DB.findOne([ '_id', word ]).on(function($word){
-        if(!$word) return res.send({ error: 404 });
+        if(!$word) return res.send({ error: 404 })
         res.send({
             word: $word._id,
             mean: $word.mean,
@@ -329,6 +330,13 @@ Server.get("/dict/:word", function(req, res){
             type: $word.type
         });
     });
+});
+
+Server.get("/error/:errorcode", function(req, res){
+    var errorcode = req.params.errorcode;
+	var errormessage = req.query.errormessage;
+	
+	res.status(errorcode).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: errorcode, error_message: errormessage }), false;
 });
 
 };
