@@ -336,9 +336,8 @@ Server.get("/error/:errorcode", function(req, res){
     var errorcode = req.params.errorcode;
 	var errormessage = req.query.errormessage;
 	
-	res.status(errorcode).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: errorcode, error_message: errormessage }), false;
+	res.status(errorcode).render((path.resolve(__dirname, "..", 'views', 'error.pug')), { error_code: errorcode, error_message: errormessage });
 });
-
 };
 function getCFRewards(word, level, blend){
 	var R = [];
