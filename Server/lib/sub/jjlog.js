@@ -79,10 +79,10 @@ function callLog(text){
                         if (idMatch) {
                             var mainorroom = text.match(/@(\d+)/);
                             if (mainorroom[1] === "0") {
-                                var channel = discordClient.channels.get("1307187359628005437")
+                                var channel = discordClient.channels.get(GLOBAL.CHATLOG_OPTIONS.CHANNEL_ID)
                                 getNickname(idMatch[1]).then(idData => {channel.send("[" + o.year + "-" + o.month + "-" + o.date + " " + o.hour + ":" + o.minute + ":" + o.second + "] " + idData + " : " + jsonData.value)})
                             } else if (mainorroom[1] === "1") {
-                                var channel = discordClient.channels.get("1307245355468853270")
+                                var channel = discordClient.channels.get(GLOBAL.CHATLOG_OPTIONS.CHANNEL_ID)
                                 getNickname(idMatch[1]).then(idData => {channel.send("[" + o.year + "-" + o.month + "-" + o.date + " " + o.hour + ":" + o.minute + ":" + o.second + "] " + idData + " : " + jsonData.value)})
                             }
                         }
