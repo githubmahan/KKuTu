@@ -1520,6 +1520,11 @@ function getRewards(mode, score, bonus, rank, all, ss, opts){
 			break;
 		case 'FRE':
 			return { score: 0, money: 0 }; // 자유는 보상이 없다
+		case 'KAW':
+		case 'EAW':
+			rw.score += score * 0.1;
+			if(opts.mission) rw.score *= 0.01;
+			break;
 		default:
 			break;
 	}
@@ -1538,8 +1543,8 @@ function getRewards(mode, score, bonus, rank, all, ss, opts){
 		rw.together = true;
 	}
 	rw.score += bonus;
-	rw.score = rw.score || 0;
-	rw.money = rw.money || 0;
+	rw.score = rw.score * 2 || 0;
+	rw.money = rw.money * 2 || 0;
 	
 	// applyEquipOptions에서 반올림한다.
 	return rw;

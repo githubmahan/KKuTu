@@ -495,7 +495,7 @@ function getAuto(char, subc, type){
 		}
 		DB.kkutu[my.rule.lang].find.apply(this, aqs).limit(bool ? 1 : 123).on(function($md){
 			forManner($md);
-			if(my.game.chain) aft($md.filter(function(item){ return !my.game.chain.includes(item); }));
+			if(my.game.chain && !my.opts.returns) aft($md.filter(function(item){ return !my.game.chain.includes(item); }));
 			else aft($md);
 		});
 		function forManner(list){

@@ -83,6 +83,10 @@ $audiosets = [
 			value: "/media/LobbyBGM3.mp3"
 		},
 		{
+			key: "lobby4",
+			value: "/media/LobbyBGM4.mp3"
+		},
+		{
 			key: "k",
 			value: "/media/kkutu/k.mp3"
 		},
@@ -159,6 +163,10 @@ $audiosets = [
 		{
 			key: "lobby3",
 			value: "/media/LobbyBGM3.mp3"
+		},
+		{
+			key: "lobby4",
+			value: "/media/LobbyBGM4.mp3"
 		},
 		{
 			key: "k",
@@ -249,7 +257,7 @@ for (i = 0; i <= 10; i++) $audiosets[1].push(
 var $sound = {};
 var $_sound = {}; // 현재 재생 중인 것들
 var $data = {};
-var $lib = { Classic: {}, Jaqwi: {}, Crossword: {}, Typing: {}, Hunmin: {}, Daneo: {}, Sock: {}, Drawing: {}, Free: {}, Moqwi: {} };
+var $lib = { Classic: {}, Jaqwi: {}, Crossword: {}, Typing: {}, Hunmin: {}, Daneo: {}, Sock: {}, Drawing: {}, Free: {}, Moqwi: {}, All: {} };
 var $rec;
 var mobile;
 
@@ -2031,6 +2039,28 @@ $lib.Free.roundReady = $lib.Daneo.roundReady
 $lib.Free.turnStart = $lib.Daneo.turnStart
 $lib.Free.turnGoing = $lib.Classic.turnGoing
 $lib.Free.turnEnd = $lib.Daneo.turnEnd
+/**
+ * Rule the words! KKuTu Online
+ * Copyright (C) 2017 JJoriping(op@jjo.kr)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+$lib.All.roundReady = $lib.Daneo.roundReady
+$lib.All.turnStart = $lib.Daneo.turnStart
+$lib.All.turnGoing = $lib.Classic.turnGoing
+$lib.All.turnEnd = $lib.Daneo.turnEnd
 /**
  * Rule the words! KKuTu Online
  * Copyright (C) 2017 JJoriping(op@jjo.kr)

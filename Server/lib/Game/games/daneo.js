@@ -241,7 +241,7 @@ function getAuto(theme, type){
 	var raiser;
 	var lst = false;
 	
-	if(my.game.chain) aqs.push([ '_id', { '$nin': my.game.chain } ]);
+	if (my.game.chain && !my.opts.returns) aqs.push(['_id', { '$nin': my.game.chain }]);
 	raiser = DB.kkutu[my.rule.lang].find.apply(this, aqs).limit(bool ? 1 : 123);
 	switch(type){
 		case 0:

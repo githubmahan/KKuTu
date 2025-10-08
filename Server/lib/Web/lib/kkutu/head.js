@@ -65,6 +65,10 @@ $audiosets = [
 			value: "/media/LobbyBGM3.mp3"
 		},
 		{
+			key: "lobby4",
+			value: "/media/LobbyBGM4.mp3"
+		},
+		{
 			key: "k",
 			value: "/media/kkutu/k.mp3"
 		},
@@ -141,6 +145,10 @@ $audiosets = [
 		{
 			key: "lobby3",
 			value: "/media/LobbyBGM3.mp3"
+		},
+		{
+			key: "lobby4",
+			value: "/media/LobbyBGM4.mp3"
 		},
 		{
 			key: "k",
@@ -231,7 +239,7 @@ for (i = 0; i <= 10; i++) $audiosets[1].push(
 var $sound = {};
 var $_sound = {}; // 현재 재생 중인 것들
 var $data = {};
-var $lib = { Classic: {}, Jaqwi: {}, Crossword: {}, Typing: {}, Hunmin: {}, Daneo: {}, Sock: {}, Drawing: {}, Free: {}, Moqwi: {} };
+var $lib = { Classic: {}, Jaqwi: {}, Crossword: {}, Typing: {}, Hunmin: {}, Daneo: {}, Sock: {}, Drawing: {}, Free: {}, Moqwi: {}, All: {} };
 var $rec;
 var mobile;
 

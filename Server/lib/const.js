@@ -216,6 +216,22 @@ exports.RULE = {
 		ai: false,
 		big: false,
 		ewq: false
+	},
+	'KAW': { lang: "ko",
+		rule: "All",
+		opts: [ "mis", "rtn", "rtu" ],
+		time: 1,
+		ai: true,
+		big: false,
+		ewq: true
+	},
+	'EAW': { lang: "en",
+		rule: "All",
+		opts: [ "mis", "rtn", "rtu" ],
+		time: 1,
+		ai: true,
+		big: false,
+		ewq: true
 	}
 };
 exports.getPreScore = function(text, chain, tr){

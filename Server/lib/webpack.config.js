@@ -74,6 +74,7 @@ module.exports = {
 				resolve(gameSourcePath, "rule_hunmin.js"),
 				resolve(gameSourcePath, "rule_daneo.js"),
 				resolve(gameSourcePath, "rule_free.js"),
+				resolve(gameSourcePath, "rule_all.js"),
 				resolve(gameSourcePath, "rule_drawing.js"),
 				resolve(gameSourcePath, "rule_sock.js"),
 				resolve(gameSourcePath, "body.js"),
