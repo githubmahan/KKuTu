@@ -1,0 +1,16 @@
+{
+  "name": "마한끄투",
+  "short_name": "마한끄투",
+  "description": "마한끄투 웹 앱",
+  "icons": [
+    {
+      "src": "img/kkutu/logo.png",
+      "sizes": "200x200",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "fullscreen",
+  "theme_color": "#55AA55",
+  "background_color": "#51A351"
+}

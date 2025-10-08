@@ -1,0 +1,63 @@
+{
+	"ADMIN": [ "INPUT ADMIN ID HERE" ],
+	"TESTER": [ "INPUT TESTER ID HERE" ],	
+	"MAIN_PORTS": [ 8080 ],
+	"GAME_SERVER_HOST": "127.0.0.2",
+	"KKUTUHOT_PATH": "/kkutu/data/kkutuhot.json",
+	"PASS": "INPUT GWALLI PASSWORD HERE",
+	"PG_OPTIONS": {
+		"HOST": "localhost",
+		"USER": "postgres",
+		"PASSWORD": "INPUT PG PASSWORD HERE",
+		"PORT": 5432,
+		"DATABASE": "main"
+	},
+	"RECAPTCHA_OPTIONS": {
+		"TO_GUEST": false,
+		"TO_USER": false,
+		"SITE_KEY": "INPUT SITE KEY HERE",
+		"SECRET_KEY": "INPUT SECRET KEY HERE"
+	},
+	"SERVER_OPTIONS": {
+		"MAIN_PORTS": [ 8080 ],
+		"ROOM_PORTS": [ 8443 ],
+		"SERVER_NAME": "마한끄투",
+		"WEB_CPU": 1,
+		"GAME_CPU": 1
+	},
+	"SSL_OPTIONS": {
+		"PRIVKEY": "INPUT PRIVKEY KEY HERE",
+		"CERT": "INPUT SSL CERTIFICATE HERE",
+		"CA": "INPUT SSL CA-Bundle HERE",
+		"PFX": "INPUT SSL PFX-Bundle HERE",
+		"isPFX": false,
+		"isCA": false,
+		"IS_SECURED": false,
+		"WAF": false
+	},
+	"OG_OPTIONS": {
+		"OG_IMAGE": "OpenGraph Image URL Here",
+		"OG_URL": "OpenGraph URL Here",
+		"OG_TITLE": "OpenGraph Title Here",
+		"OG_DESC": "OpenGraph Description Here"
+	},
+	"LOG_OPTIONS": {
+		"chat_log_webhook": "INPUT CHATLOG DISCORD WEBHOOK URL HERE",
+		"join_log_webhook": "INPUT CHATLOG DISCORD WEBHOOK URL HERE"
+	},
+	"ALLOWENTER_OPTIONS": {
+		"ALLOWENTER": true,
+		"ALLOWGUESTENTER": false
+	},
+	"USER_BLOCK_OPTIONS": {
+		"USE_MODULE": false,
+		"USE_X_FORWARDED_FOR": false,
+		"BLOCK_IP_ONLY_FOR_GUEST": true,
+		"DEFAULT_BLOCKED_TEXT": "관리자에 의해 서비스 이용이 제한되었습니다.",
+		"BLOCKED_FOREVER": "영구 이용제한"
+	},
+	"NICKNAME_LIMIT": {
+		"TERM": 7,
+		"REGEX": [ "[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-+<>@#$%&\\\\=\\(\\'\"]", "gi" ]
+	}
+}

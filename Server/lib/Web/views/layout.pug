@@ -1,0 +1,78 @@
+//-
+	Rule the words! KKuTu Online
+	Copyright (C) 2017 JJoriping(op@jjo.kr)
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program. If not, see <http://www.gnu.org/licenses/>.
+include module
+
+- if(LANG == undefined) LANG = locals.locale;
+
+doctype html
+html
+	head
+		block Subject
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+		link(rel='manifest', href='mahankkutu.webmanifest', crossorigin='use-credentials')
+		script(async, src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8995066116577357", crossorigin="anonymous")
+		script(async, src="https://fundingchoicesmessages.google.com/i/pub-8995066116577357?ers=1")
+		script (function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();
+		script(src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js", integrity="sha384-DKYJZ8NLiK8MN4/C5P2dtSmLQ4KwPaoqAfyA/DfmEc1VDxu4yyC7wy6K1Hs90nka", crossorigin="anonymous")
+		script. 
+			Kakao.init('811e94d979044d9868baf25c49a29e51');
+		script.
+			window.onload = function() {
+				Kakao.Channel.createAddChannelButton({
+					container: '#kakao-add-channel-button',
+					channelPublicId: '_vWpLG'
+				});
+			};
+		script(type='text/javascript').
+			function getObject(v, i) {
+				Object.defineProperty(v, i, {value: v[i], writable: false});
+			}
+			getObject(window.WebSocket, "send");
+			getObject(window.WebSocket, "onmessage");
+			getObject(window, "WebSocket");
+
+		+PageHead()
+			block Preload
+		block CSS
+		block JS
+
+	body(style='min-width: 640px;')
+		div#Top
+			+Menu()
+			div#global-notice
+				div#gn-content
+					include ../public/global_notice.html
+				+Expl(L('GLOBAL_NOTICE'))
+			block Top
+		div#Jungle
+			span#mobile= locals.mobile
+			span#summonerID= DATA._id
+			span#max-users= locals.MAX_USERS
+			img#Background(src='/img/bg/' + (locals.bg || 'def.png'))
+			block Jungle
+		div#Middle
+			block Middle
+		div#Bottom
+			block Bottom
+			div.bottom-legal
+				a(href='?')= L('AS_MOBILE')
+				br
+				a.bottom-contact(href='/public_info_personal.html', target='_blank')= L('INFO')
+				a.bottom-contact(href='/public_info_use.html', target='_blank')= L('SERVICE')
+			div.bottom-legal!= L('AGPL')
+			+separator(10)

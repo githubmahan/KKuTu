@@ -1,0 +1,17 @@
+Server/run.bat
+Server/node_modules
+Server/lib/node_modules
+Server/lib/Web/public/js/**
+!Server/lib/Web/public/js/jquery.js
+Server/lib/sub/auth.json
+Server/lib/sub/global.json
+Server/lib/Web/public/naveraaf191256a8b17d930229b16490d5066.html
+Server/lib/Web/public/public_info_personal.html
+Server/lib/Web/public/public_info_use.html
+Server/lib/Web/public/robots.txt
+Server/lib/Web/public/.well-known
+Server/lib/Web/public/.well-known/*
+Redis
+Redis/*
+kkutuhot.json
+KKUTU_ERROR.log

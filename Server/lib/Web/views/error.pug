@@ -1,0 +1,15 @@
+doctype html
+html
+    head
+        title 마한끄투 - 오류 {error_code}
+    body
+        .flex.min-h-screen.flex-col.justify-center.px-6.py-12(class='dark:bg-gray-900 lg:px-8')
+            .sm-mx-auto.sm-w-full
+                p 오류 #{error_code} - #{error_message}
+        p.mt-10.text-center.text-sm.text-gray-500(class='dark:text-gray-300')
+            if error_code == 403
+                a.font-semibold.leading-6.text-purple-600(href='/login', class='hover:text-purple-500 dark:text-purple-300 dark:hover:text-purple-500')
+                    | 권한이 있다고요? 로그인하기
+                br
+            a.font-semibold.leading-6.text-purple-600(href='/', class='hover:text-purple-500 dark:text-purple-300 dark:hover:text-purple-500')
+                | 메인으로 돌아가기
