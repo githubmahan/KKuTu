@@ -296,8 +296,19 @@ exports.Client = function(socket, profile, sid){
 		try{ data = JSON.parse(msg); }catch(e){ data = { error: 400 }; }
 		JLog.log(`Chan @${channel} Msg #${my.id}: ${data.type == 'drawingCanvas' ? JSON.stringify({type: data.type, diffed: data.diffed}) : msg}`);
 		if ((data.type === 'chat' || data.type === 'talk') && !data.relay) {
-			const name = my.nickname ? `${my.nickname} (${my.id})` : my.id
-			sendToWebhook(JLog.getdate() + name + ': ' + data.value, GLOBAL.LOG_OPTIONS.chat_log_webhook);
+			const nickname = (my && my.nickname) ? my.nickname : 'Unknown';
+			const userId = (my && my.id) ? my.id : 'UnknownID';
+			const name = `${nickname} (${userId})`;
+
+			const message = data?.value ?? '(no message)';
+			const webhookUrl = GLOBAL?.LOG_OPTIONS?.chat_log_webhook;
+
+			if (!webhookUrl) {
+				JLog.warn('[WARN] chat_log_webhook이 설정되어 있지 않습니다.');
+				return;
+			}
+
+			sendToWebhook(`${JLog.getdate()} ${name}: ${message}`, webhookUrl);
 		}
 		if(Cluster.isWorker) process.send({ type: "tail-report", id: my.id, chan: channel, place: my.place, msg: data.error ? msg : data });
 		
@@ -1418,8 +1429,12 @@ exports.Room = function(room, channel){
 	my.set(room);
 };
 function sendToWebhook(content, webhook) {
-	if ((typeof webhook === 'string') && webhook.indexOf('https://discord.com/api/webhooks/') === 0) {
-		axios.post(webhook, {content: content});
+	try {
+		if ((typeof webhook === 'string') && webhook.indexOf('https://discord.com/api/webhooks/') === 0) {
+			axios.post(webhook, {content: content});
+		}
+	} catch (e) {
+		JLog.alert("로그 오류 : " + e)
 	}
 }
 function getFreeChannel(){
@@ -1543,8 +1558,8 @@ function getRewards(mode, score, bonus, rank, all, ss, opts){
 		rw.together = true;
 	}
 	rw.score += bonus;
-	rw.score = rw.score * 2 || 0;
-	rw.money = rw.money * 2 || 0;
+	rw.score = rw.score || 0;
+	rw.money = rw.money || 0;
 	
 	// applyEquipOptions에서 반올림한다.
 	return rw;
