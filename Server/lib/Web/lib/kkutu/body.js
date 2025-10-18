@@ -2672,7 +2672,7 @@ function playSound(key, loop){
 	}
 	if($_sound[key]) $_sound[key].stop();
 	$_sound[key] = src;
-	src.key = key === "lobby" || key === "lobby4fool" || key === "lobby1" || key === "lobby2" || key === "lobby3" ? "lobby" : key;
+	src.key = key === "lobby" || key === "lobby4fool" || key === "lobby1" || key === "lobby2" || key === "lobby3" || key === "lobby4" ? "lobby" : key;
 	src.start();
 	/*if(sound.readyState) sound.currentTime = 0;
 	sound.loop = loop || false;
