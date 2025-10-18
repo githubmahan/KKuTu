@@ -896,7 +896,6 @@ $(document).ready(function(){
 		$.cookie('kks', JSON.stringify($data.opts));
 		$stage.dialog.setting.hide();
 		loadSounds($audiosets[$("#effect-select").val()], () => {loading();});
-		playBGM("lobby")
 	});
 	$stage.dialog.profileLevel.on('click', function(e){
 		$("#PracticeDiag .dialog-title").html(L['robot']);
