@@ -94,7 +94,7 @@ function page(req, res, file, data){
 		data.page = file;
 	}
 	
-	JLog.log(`${GLOBAL.USER_BLOCK_OPTIONS.USE_X_FORWARDED_FOR ? req.get('x-forwarded-for') : addr.slice(7)}@${sid.slice(0, 10)} ${data.page}, ${JSON.stringify(req.params)}`);
+	JLog.log(`${GLOBAL.SSL_OPTIONS.WAF ? req.get("cf-connecting-ip") : GLOBAL.USER_BLOCK_OPTIONS.USE_X_FORWARDED_FOR ? req.get('x-forwarded-for') : addr.slice(7)}@${sid.slice(0, 10)} ${data.page}, ${JSON.stringify(req.params)}`);
 	res.render(data.page, data, function(err, html){
 		if(err) res.send(err.toString());
 		else res.send(html);

@@ -403,7 +403,7 @@ exports.init = function(_SID, CHAN){
 				$c.admin = GLOBAL.ADMIN.indexOf($c.id) != -1;
 				$c.tester = GLOBAL.TESTER.indexOf($c.id) != -1;
 				/* Enhanced User Block System [S] */
-				$c.remoteAddress = GLOBAL.USER_BLOCK_OPTIONS.USE_X_FORWARDED_FOR ? info.headers['x-forwarded-for'] : info.connection.remoteAddress;
+				$c.remoteAddress = GLOBAL.SSL_OPTIONS.WAF ? info.headers["cf-connecting-ip"] : GLOBAL.USER_BLOCK_OPTIONS.USE_X_FORWARDED_FOR ? info.headers['x-forwarded-for'] : info.connection.remoteAddress;
 				/* Enhanced User Block System [E] */
 				
 				if(DIC[$c.id]){
@@ -535,11 +535,10 @@ function joinNewUser($c) {
 	narrateFriends($c.id, $c.friends, "on");
 	KKuTu.publish('conn', {user: $c.getData()});
 
-	const ip = $c.remoteAddress.replace('::ffff:', '');
 	const name = $c.nickname ? `${$c.nickname} (${$c.id})` : $c.id
 
 	JLog.info("New user #" + $c.id);
-	if($c.id !== "discord-734967086929150004") sendToWebhook(JLog.getdate() + name + ": " + ip, GLOBAL.LOG_OPTIONS.join_log_webhook)
+	if($c.id !== "discord-734967086929150004") sendToWebhook(JLog.getdate() + name + ": " + $c.remoteAddress, GLOBAL.LOG_OPTIONS.join_log_webhook)
 	
 	if(GLOBAL.WAF) setInterval(() => {
 		$c.send('maintainConnection');
