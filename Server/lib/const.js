@@ -261,7 +261,7 @@ exports.KO_INJEONG = [
 	"HSS", "HDC", "HOS", "SCP",
 	"THH", "TNM", "MGM", "GIK", "BTB", "MCO", "OCW", "HNO", "RDD", "PGW", "BAK", "OSX", "DSB", "MDS", "BTG", "SPP", "HNS",
 	"ZBG", "SLN", "GDS", "ASP", "HCR", "MCS", "GOO", "MUK", "GUN", "PRO", "ONG", "BWL", "HOI", "ROS", "PSK", "PRS", "GOT",
-	"UMA", "RSI", "IRT", "ING", "MRO", "SAN", "MHU", "POB", "RNZ", "COD", "BKS", "MMB", "TRD", "COC", "AOH", "TRU", "WOO"
+	"UMA", "RSI", "IRT", "ING", "MRO", "SAN", "MHU", "POB", "RNZ", "COD", "BKS", "MMB", "TRD", "COC", "AOH", "TRU", "WOO", "SNG"
 ];
 
 exports.EN_INJEONG = [
