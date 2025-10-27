@@ -35,6 +35,8 @@ var Rule;
 var guestProfiles = [];
 var CHAN;
 var channel = process.env['CHANNEL'] || 0;
+const webhookQueue = []
+let sending = false;
 
 const NUM_SLAVES = 4;
 const GUEST_IMAGE = "/img/kkutu/guest.png";
@@ -1429,13 +1431,44 @@ exports.Room = function(room, channel){
 	my.set(room);
 };
 function sendToWebhook(content, webhook) {
-	try {
-		if ((typeof webhook === 'string') && webhook.indexOf('https://discord.com/api/webhooks/') === 0) {
-			axios.post(webhook, {content: content});
-		}
-	} catch (e) {
-		JLog.alert("로그 오류 : " + e)
+	if (typeof webhook !== "string" || !webhook.startsWith("https://discord.com/api/webhooks/")) {
+		return;
 	}
+	webhookQueue.push({ content, webhook });
+	processQueue();
+}
+
+function sleep(ms) {
+	const end = Date.now() + ms;
+	while (Date.now() < end) {}
+}
+
+function processQueue() {
+	if (sending || webhookQueue.length === 0) return;
+	sending = true;
+
+	const { content, webhook } = webhookQueue.shift();
+
+	axios.post(webhook, { content })
+		.then(res => {
+			if (res.status !== 204 && res.status !== 200) {
+				JLog.warn(`[WARN] Discord 응답: ${res.status} ${res.statusText}`);
+			}
+		})
+		.catch(err => {
+			if (err.response && err.response.status === 429) {
+				const retryAfter = err.response.data?.retry_after ?? 1000;
+				JLog.warn(`[WARN] 채팅로그 rate 제한: ${retryAfter}ms 후 재시도`);
+				sleep(retryAfter);
+				webhookQueue.unshift({ content, webhook });
+			} else {
+				JLog.error("[ERROR] 채팅로그 전송 실패:", err.message);
+			}
+		})
+		.finally(() => {
+			sending = false;
+			setTimeout(processQueue, 1000);
+		});
 }
 function getFreeChannel(){
 	var i, list = {};

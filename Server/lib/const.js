@@ -253,7 +253,7 @@ exports.MISSION_en = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l
 exports.KO_INJEONG = [
 	"IMS", "VOC", "GAM", "KRR", "GAB", "KTV",
 	"NSK", "NYA", "KOT", "KBJ", "KPI", "KPT", "DOT", "DRR", "DBP", "DGM", "RAG", "LVL",
-	"LOL", "ROA", "MRN", "MMM", "MIN", "MBE", "MPA", "MHK", "MAP", "MKK", "MNG",
+	"LOL", "ROA", "MMM", "MIN", "MBE", "MPA", "MHK", "MAP", "MNG",
 	"ACH", "BAG", "HYK", "CYP", "WGA", "SVN", "SAG", "HRH", "SDB", "STA",
 	"KGR", "ESB", "MOV", "ELW", "OIM", "OVW", "OWV", "OWP", "WOW",
 	"UNA", "UNE", "YRY", "KPO", "JLN", "JAN", "ZEL", "CES", "PCA",
@@ -261,7 +261,8 @@ exports.KO_INJEONG = [
 	"HSS", "HDC", "HOS", "SCP",
 	"THH", "TNM", "MGM", "GIK", "BTB", "MCO", "OCW", "HNO", "RDD", "PGW", "BAK", "OSX", "DSB", "MDS", "BTG", "SPP", "HNS",
 	"ZBG", "SLN", "GDS", "ASP", "HCR", "MCS", "GOO", "MUK", "GUN", "PRO", "ONG", "BWL", "HOI", "ROS", "PSK", "PRS", "GOT",
-	"UMA", "RSI", "IRT", "ING", "MRO", "SAN", "MHU", "POB", "RNZ", "COD", "BKS", "MMB", "TRD", "COC", "AOH", "TRU", "WOO", "SNG"
+	"UMA", "RSI", "IRT", "ING", "MRO", "SAN", "MHU", "POB", "RNZ", "COD", "BKS", "MMB", "TRD", "COC", "AOH", "TRU", "WOO",
+	"SNG", "YUH", "FST", "OMK", "BDK", "STI", "MOG", "MBJ", "TAN", "PIX", "SUB", "SKY"
 ];
 
 exports.EN_INJEONG = [
